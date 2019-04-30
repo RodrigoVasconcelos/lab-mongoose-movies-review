@@ -3,9 +3,12 @@ var express = require('express');
 var router = express.Router();
 const Celeb = require('../models/schemas/celebrity.js');
 
-router.get('/celebrities', (req, res, next) => {
+// GET  '/celebrities'
+router.get('/', (req, res, next) => {
   Celeb.find({})
-    .then( (allCelebs) => res.render('./celebrities/index', {allCelebs} ))
+    .then( (allCelebs) => {      
+      res.render('celebrities/index', {allCelebs} )
+    })
     .catch( (err) => {next; return err});
 });
 

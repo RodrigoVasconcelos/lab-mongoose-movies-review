@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const { dbName } = require('./config')
 
 const router = require('./routes/index')
 
 
-mongoose.connect(`mongodb://localhost/library`, {
+mongoose.connect(`mongodb://localhost/${dbName}`, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Router
 app.use('/', router);
 
 // catch 404 and forward to error handler

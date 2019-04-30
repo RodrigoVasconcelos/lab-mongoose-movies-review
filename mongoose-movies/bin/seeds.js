@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const Celebrity = require('../models/schemas/celebrity');
 
 
-const dbName = 'celebrities';
+const {dbName} = require('./../config');
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
+Celebrity.collection.drop();
 
 const celebrityList = [
   {
